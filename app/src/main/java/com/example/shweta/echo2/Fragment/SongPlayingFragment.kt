@@ -533,7 +533,6 @@ class SongPlayingFragment : Fragment() {
 
                 }
             }
-
         }
     }
 
