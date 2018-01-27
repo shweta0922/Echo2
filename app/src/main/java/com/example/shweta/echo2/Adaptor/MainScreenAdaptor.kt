@@ -36,7 +36,14 @@ class MainScreenAdaptor(_songDetails: ArrayList<Songs>, _context: Context) : Rec
         holder?.trackTitle?.text = songObject?.songTitle
         holder?.trackArtist?.text = songObject?.Artist
         holder?.contentHolder?.setOnClickListener({
-
+            try{
+                if (SongPlayingFragment.Statified.mediaplayer?.isPlaying as Boolean) {
+                    SongPlayingFragment.Statified.mediaplayer?.pause()
+                    SongPlayingFragment.Statified.playpauseImageButton?.setBackgroundResource(R.drawable.play_icon)
+                }
+            }catch (e: Exception){
+                e.printStackTrace()
+            }
             var songPlayingFragment = SongPlayingFragment()
             var args = Bundle()
             args.putString("songArtist", songObject?.Artist)

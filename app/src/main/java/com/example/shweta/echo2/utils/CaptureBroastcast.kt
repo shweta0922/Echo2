@@ -16,9 +16,14 @@ class CaptureBroastcast : BroadcastReceiver() {
     override fun onReceive(context: Context?, p1: Intent?) {
 
         if (p1?.action == Intent.ACTION_NEW_OUTGOING_CALL) {
-            try{
+            try {
                 MainActivity.Statified.notificationManager?.cancel(2000)
-                if (SongPlayingFragment.Statified.mediaplayer?.isPlaying as Boolean) {
+            }
+                catch (e: Exception){
+                    e.printStackTrace()
+                }
+        try{
+        if (SongPlayingFragment.Statified.mediaplayer?.isPlaying as Boolean) {
                     SongPlayingFragment.Statified.mediaplayer?.pause()
                     SongPlayingFragment.Statified.playpauseImageButton?.setBackgroundResource(R.drawable.play_icon)
                 }
@@ -28,7 +33,7 @@ class CaptureBroastcast : BroadcastReceiver() {
 
         } else {
             val tm: TelephonyManager = context?.getSystemService(Service.TELEPHONY_SERVICE) as TelephonyManager
-            when (tm.callState) {
+            when (tm?.callState) {
                 TelephonyManager.CALL_STATE_RINGING -> {
                     try {
                         MainActivity.Statified.notificationManager?.cancel(2000)

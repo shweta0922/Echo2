@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this@MainActivity,MainActivity :: class.java)
         val pIntent = PendingIntent.getActivity(this@MainActivity,
-                System.currentTimeMillis().toInt() , intent,PendingIntent.FLAG_UPDATE_CURRENT)
+                System.currentTimeMillis().toInt() , intent,0)
         trackNotificationBuilder = NotificationCompat.Builder(this@MainActivity,"channel")
                 .setContentTitle("a track is playing in background")
                 .setSmallIcon(R.drawable.echo_logo)
@@ -70,7 +70,6 @@ class MainActivity : AppCompatActivity() {
                 .setOngoing(true)
                 .setAutoCancel(true)
                 .build()
-
         Statified.notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     }
     override fun onStart(){
